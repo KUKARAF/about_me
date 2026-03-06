@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | Rafal Kukawski &mdash; osmosis.page</title>
+  <meta name="description" content="AI Engineering, Python Development, DevOps, and IT Consulting services by Rafal Kukawski.">
+  <script defer src="https://analytics.osmosis.page/script.js" data-website-id="a5646329-cbd5-4703-a0b0-95e4a492fed9"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --grid-bg: #a3b6c1;
+      --grid-line: #d0d7dc;
+      --accent: #e56052;
+      --accent-dark: #c9453a;
+      --dark: #ffffff;
+      --dark-2: #f0f2f5;
+      --text: #1a1e23;
+      --text-muted: #5f6b7a;
+      --white: #ffffff;
+      --section-alt: #f7f8fa;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.03;
+      background-size: 40px 40px;
+      background-image:
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+      pointer-events: none;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--accent); }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #1a1e23;
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+
+    /* Sections */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Page header */
+    .page-header {
+      padding-top: 8rem;
+      padding-bottom: 4rem;
+      text-align: center;
+    }
+
+    .page-header .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1.5rem;
+    }
+
+    .page-header .section-title::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .page-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Services grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      padding: 2.5rem 2rem;
+      background: var(--white);
+      border-radius: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      transition: border-color 0.3s, transform 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card:hover {
+      border-color: rgba(229, 96, 82, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(229, 96, 82, 0.1);
+      border-radius: 14px;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: var(--accent);
+    }
+
+    .service-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .service-tags span {
+      padding: 0.3rem 0.75rem;
+      background: var(--dark-2);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Process section */
+    .process { background: var(--section-alt); }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .process-step {
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: rgba(229, 96, 82, 0.1);
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .process-step h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .process-step p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* CTA section */
+    .cta-section {
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 500px;
+      margin: 0 auto 2rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      section { padding: 4rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        padding: 1.5rem 2rem;
+        gap: 1rem;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      }
+      .nav-toggle { display: block; }
+      .services-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">osmosis<span>.</span>page</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="section-title">Services</h1>
+      <p class="page-subtitle">From AI-powered automation to full-stack development and infrastructure &mdash; I help businesses build, scale, and ship.</p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section>
+    <div class="container">
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          </div>
+          <h3>AI &amp; LLM Engineering</h3>
+          <p>Design, build, and deploy production LLM applications. From prompt engineering strategies to full chat systems with structured output, context optimization, and evaluation pipelines.</p>
+          <div class="service-tags">
+            <span>GPT / Claude / Gemini</span>
+            <span>LangChain</span>
+            <span>Prompt Engineering</span>
+            <span>RAG</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+          </div>
+          <h3>Python Development</h3>
+          <p>Full-stack Python applications, REST APIs, web platforms, and automation scripts. Clean, tested, production-ready code built with modern frameworks and best practices.</p>
+          <div class="service-tags">
+            <span>Django</span>
+            <span>FastAPI</span>
+            <span>Flask</span>
+            <span>ETL Pipelines</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H6v-2h6v2zm4-4H6v-2h10v2zm0-4H6V7h10v2z"/></svg>
+          </div>
+          <h3>Data Engineering</h3>
+          <p>ETL pipeline design and implementation, data processing at scale, and database architecture. From ingestion to transformation to delivery.</p>
+          <div class="service-tags">
+            <span>Spark</span>
+            <span>Kafka</span>
+            <span>SQL</span>
+            <span>Pandas</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 13H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1zM7 19c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM20 3H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zM7 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
+          </div>
+          <h3>DevOps &amp; Infrastructure</h3>
+          <p>Container orchestration, CI/CD pipelines, cloud infrastructure, and server management. I build reliable, automated deployment workflows that scale.</p>
+          <div class="service-tags">
+            <span>Docker</span>
+            <span>Kubernetes</span>
+            <span>AWS</span>
+            <span>Terraform</span>
+            <span>Nginx</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+          </div>
+          <h3>Linux &amp; System Administration</h3>
+          <p>15+ years of Linux expertise. Server setup and hardening, self-hosted solutions, performance tuning, and security auditing across distributions.</p>
+          <div class="service-tags">
+            <span>Linux</span>
+            <span>Bash</span>
+            <span>Nginx</span>
+            <span>Self-hosting</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95a15.65 15.65 0 00-1.38-3.56A8.03 8.03 0 0118.92 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56A7.987 7.987 0 015.08 16zm2.95-8H5.08a7.987 7.987 0 014.33-3.56A15.65 15.65 0 008.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 01-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+          </div>
+          <h3>IT Consulting &amp; Education</h3>
+          <p>Technical consulting for teams adopting AI, architecture reviews, technology selection guidance, and hands-on workshops. Available in English, German, Spanish, and Polish.</p>
+          <div class="service-tags">
+            <span>Architecture Review</span>
+            <span>AI Adoption</span>
+            <span>Workshops</span>
+            <span>Multilingual</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="process">
+    <div class="container">
+      <h2 class="section-title">How I work</h2>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <h3>Discovery</h3>
+          <p>We discuss your goals, constraints, and technical requirements to define the scope clearly.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <h3>Design</h3>
+          <p>I propose an architecture and approach, choosing the right tools and patterns for the job.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <h3>Build</h3>
+          <p>Iterative development with regular check-ins. Clean code, tested, documented, and ready for production.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <h3>Support</h3>
+          <p>Handover, deployment assistance, and ongoing support to make sure everything runs smoothly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to start a project?</h2>
+      <p>Tell me about what you're building and let's figure out how I can help.</p>
+      <div class="cta-buttons">
+        <a href="index.html#contact" class="btn btn-primary">Get in touch</a>
+        <a href="index.html" class="btn btn-outline">Back to home</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Rafa&#322; Kukawski &mdash; <a href="https://osmosis.page">osmosis.page</a></p>
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+%%%%%%%%%%%%%%%%%
+% This is an sample CV template created using altacv.cls
+% (v1.7, 9 August 2023) written by LianTze Lim (liantze@gmail.com). Compiles with pdfLaTeX, XeLaTeX and LuaLaTeX.
+%
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%%%%%%%%%%%%%%%%
+
+%% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
+% \documentclass[10pt,a4paper,normalphoto]{altacv}
+
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
+%% AltaCV uses the fontawesome5 and packages.
+%% See http://texdoc.net/pkg/fontawesome5 for full list of symbols.
+
+% Change the page layout if you need to
+\geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm}
+
+% The paracol package lets you typeset columns of text in parallel
+\usepackage{paracol}
+\usepackage{pdfrender}
+
+% Change the font if you want to, depending on whether
+% you're using pdflatex or xelatex/lualatex
+% WHEN COMPILING WITH XELATEX PLEASE USE
+% xelatex -shell-escape -output-driver="xdvipdfmx -z 0" sample.tex
+\ifxetexorluatex
+  % If using xelatex or lualatex:
+  \setmainfont{Roboto Slab}
+  \setsansfont{Lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\else
+  % If using pdflatex:
+  \usepackage[rm]{roboto}
+  \usepackage[defaultsans]{lato}
+  % \usepackage{sourcesanspro}
+  \renewcommand{\familydefault}{\sfdefault}
+\fi
+
+% Change the colours if you want to
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\definecolor{DarkPastelRed}{HTML}{450808}
+\definecolor{PastelRed}{HTML}{8F0D0D}
+\definecolor{GoldenEarth}{HTML}{E7D192}
+\colorlet{name}{black}
+\colorlet{tagline}{PastelRed}
+\colorlet{heading}{DarkPastelRed}
+\colorlet{headingrule}{GoldenEarth}
+\colorlet{subheading}{PastelRed}
+\colorlet{accent}{PastelRed}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+
+% Change some fonts, if necessary
+\renewcommand{\namefont}{\Huge\rmfamily\bfseries}
+\renewcommand{\personalinfofont}{\footnotesize}
+\renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+\renewcommand{\cvsubsectionfont}{\large\bfseries}
+
+
+% Change the bullets for itemize and rating marker
+% for \cvskill if you want to
+\renewcommand{\cvItemMarker}{{\small\textbullet}}
+\renewcommand{\cvRatingMarker}{\faCircle}
+% ...and the markers for the date/location for \cvevent
+% \renewcommand{\cvDateMarker}{\faCalendar*[regular]}
+% \renewcommand{\cvLocationMarker}{\faMapMarker*}
+
+
+% If your CV/résumé is in a language other than English,
+% then you probably want to change these so that when you
+% copy-paste from the PDF or run pdftotext, the location
+% and date marker icons for \cvevent will paste as correct
+% translations. For example Spanish:
+% \renewcommand{\locationname}{Ubicación}
+% \renewcommand{\datename}{Fecha}
+
+
+%% Use (and optionally edit if necessary) this .tex if you
+%% want to use an author-year reference style like APA(6)
+%% for your publication list
+% \input{pubs-authoryear.cfg}
+
+%% Use (and optionally edit if necessary) this .tex if you
+%% want an originally numerical reference style like IEEE
+%% for your publication list
+%% \input{pubs-num.cfg}
+
+%% sample.bib contains your publications
+%% \addbibresource{sample.bib}
+
+\begin{document}
+\name{Rafal Kukawski}
+\tagline{AI Engineer | Python Developer}
+%% You can add multiple photos on the left or right
+%% \photoR{2.8cm}{Globe_High}
+% \photoL{2.5cm}{Yacht_High,Suitcase_High}
+
+\personalinfo{%
+  % Not all of these are required!
+  %\location{Warsaw, Poland}
+  \email{rafal.kuka94@gmail.com}
+  \phone{+48668568097}
+  \homepage{osmosis.page}
+  \github{KUKARAF}
+  %% You can add your own arbitrary detail with
+  %% \printinfo{symbol}{detail}[optional hyperlink prefix]
+  % \printinfo{\faPaw}{Hey ho!}[https://example.com/]
+  %% Or you can declare your own field with
+  %% \NewInfoFiled{fieldname}{symbol}[optional hyperlink prefix] and use it:
+  % \NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
+  % \gitlab{your_id}
+  %%
+  %% For services and platforms like Mastodon where there isn't a
+  %% straightforward relation between the user ID/nickname and the hyperlink,
+  %% you can use \printinfo directly e.g.
+  % \printinfo{\faMastodon}{@username@instace}[https://instance.url/@username]
+  %% But if you absolutely want to create new dedicated info fields for
+  %% such platforms, then use \NewInfoField* with a star:
+  % \NewInfoField*{mastodon}{\faMastodon}
+  %% then you can use \mastodon, with TWO arguments where the 2nd argument is
+  %% the full hyperlink.
+  % \mastodon{@username@instance}{https://instance.url/@username}
+}
+
+\makecvheader
+%% Depending on your tastes, you may want to make fonts of itemize environments slightly smaller
+% \AtBeginEnvironment{itemize}{\small}
+
+%% Set the left/right column width ratio to 6:4.
+\columnratio{0.6}
+
+% Start a 2-column paracol. Both the left and right columns will automatically
+% break across pages if things get too long.
+\begin{paracol}{2}
+\cvsection{Experience}
+
+\cvevent{Rafal Kukawski software services}{Python Developer}{2022-Ongoing}{Warsaw, Poland}
+\begin{itemize}
+\item Lead Developer on the AI team for T-Mobile, designing and optimizing LLM-powered workflows and ETL pipelines
+\item Designed and iterated prompt engineering strategies (zero-shot, few-shot, chain-of-thought) for production LLM applications
+\item Built and deployed LLM chat applications using GPT and open-source models with structured JSON output and context window optimization
+\item Project Owner of the Automation Incident Management team at T-Mobile, streamlining response processes with AI-driven solutions
+\item Development of ETL Pipelines for Doordash
+\item Design and implementation of software architecture and DevOps processes
+\end{itemize}
+
+\divider
+
+\cvevent{Samsung R\&D Poland}{Computational Linguist-Python/Ruby}{2020-2022}{Warsaw, Poland}
+\begin{itemize}
+\item Development and improvement of Samsung's Bixby Voice Assistant using NLP techniques
+\item Designed prompts and evaluation criteria for Language Classification Models, reducing hallucinations and improving output consistency
+\item Training and deploying internal Language Classification Models
+\item Implementation, localisation, and improvement of Intelligent Assistant applications from the NL perspective
+\item Development and maintenance of internal web-apps and APIs
+\end{itemize}
+
+\divider
+
+\cvevent{Dimoco}{Service Integration Manager-SQL/Python/JS}{2019-2020}{Vienna, Austria}
+\begin{itemize}
+\item Integration of new clients into the company payment API
+\item Independent maintenance of the company database (Oracle SQL)
+\item Development of internal testing tools based on Node.js
+\end{itemize}
+
+\divider
+
+\cvevent{Casumo}{Customer support}{November 2017-2019}{Swieqi, Malta}
+\begin{itemize}
+\item Creation and maintenance of internal Django web application
+\item Internal technical support, internal AHK expert
+\end{itemize}
+
+\divider
+
+\cvevent{Transcom/Whirlpool}{Customer support}{November 2016-2017}{Olsztyn, Poland}
+\begin{itemize}
+\item Support for appliances in EMEA region-Germany
+\end{itemize}
+
+\divider
+
+\cvevent{Torres Cell}{Software phone repair}{2014-2016}{Guayaquil, Ecuador}
+\begin{itemize}
+\item Leader of a small team of technicians and accountants
+\item Physical/Software repair of mobile phones
+\end{itemize}
+
+\cvsection{Projects/Portfolio}
+%% todo add https://open.spotify.com/episode/4hkcCFApIOK8bYQfpOWuLZ?si=0a3d8c3627644708 
+
+\cvevent{\textbf{Python-CLI based Wordle game}}{github.com/KUKARAF/Wordle}{}{}
+
+\divider
+
+\cvevent{\textbf{Python-Automated Fan control for Pine64}}{github.com/KUKARAF/FanControlerRock64}{}{}
+
+\divider
+
+\cvevent{\textbf{Python-Complete Django Website with todo webapp, SMS service for clients and CRM backend for small local business}}{github.com/KUKARAF/personal\_homepage\_rafkukawski.tech}{}{}
+
+\divider
+
+\cvevent{\textbf{Bash-CLI and md5 based duplicate file finder}}{github.com/KUKARAF/search\_and\_destroy}{}{}
+
+\divider
+
+\cvevent{\textbf{Language learning platform based on movies}}{Django + NLTK + Python}{}{}
+
+
+\divider
+
+\cvevent{\textbf{Self hosted media server with Jellyfin and Audiobookshelf}}{Linux + Nginx + Docker}{}{}
+
+\divider
+
+\cvevent{\textbf{Smart clock}}{ws2815 + ESP32 + Python}{}{}
+
+
+\medskip
+
+
+\cvsection{Education}
+
+\cvevent{Bachelors-Universidad de Guayaquil}{Electrical Engineering}{2010-N/A}{Guayaquil, Ecuador}
+\medskip
+
+\cvevent{Bachelors-OpenClassrooms}{Full Stack Web Development}{2018-N/A}{Remote, World}
+
+\newpage
+
+
+%% Switch to the right column. This will now automatically move to the second
+%% page if the content is too long.
+\switchcolumn
+
+
+\cvsection{Skills}
+
+\smallskip
+\cvtag{Python}
+\cvtag{Prompt Engineering}
+\cvtag{LLM APIs (GPT/Claude/Gemini)}
+\cvtag{LangChain}
+\cvtag{AWS}
+\cvtag{Docker}
+\cvtag{Terraform}
+\cvtag{Kubernetes}
+\cvtag{SQL}
+\cvtag{Bash}
+\cvtag{Git}
+\cvtag{Linux Expert}
+\cvtag{Node.js/JS}
+\cvtag{Nginx}
+\cvtag{Jenkins}
+\cvtag{GH Actions}
+\cvtag{Agile}
+
+\cvsection{Python Packages}
+
+Web Development
+
+\smallskip
+\cvtag{Django}
+\cvtag{Flask}
+\cvtag{htmx}
+\cvtag{FastAPI}
+\cvtag{Gunicorn}
+\cvtag{requests}
+\cvtag{BS4}
+\cvtag{urllib3}
+\smallskip
+
+\divider
+
+ML/NLP/AI
+
+\smallskip
+\cvtag{LangChain}
+\cvtag{OpenAI API}
+\cvtag{nltk}
+\cvtag{transformers}
+\cvtag{torch}
+\cvtag{scikit}
+\cvtag{Tensorflow}
+
+\divider
+
+DB/Bigdata
+
+\smallskip
+\cvtag{Spark}
+\cvtag{Kafka}
+\cvtag{SqlAlchemy}
+
+\divider
+
+Testing
+
+\cvtag{pytest}
+\cvtag{selenium}
+
+\divider
+
+Other
+
+\smallskip
+\cvtag{Numpy}
+\cvtag{Pandas}
+\cvtag{poetry}
+
+\divider
+
+\cvsection{Languages}
+
+
+\cvskill{English}{5}
+\divider
+
+\cvskill{German}{5}
+\divider
+
+\cvskill{Spanish}{4}
+\divider
+
+\cvskill{Polish}{3}
+\divider
+
+
+\cvskill{Russian}{1}
+\divider
+
+\medskip
+
+\newpage
+
+\cvsection{Achievements}
+
+\cvachievement{\faUsers}{Multilingual AI Engineer}{Fluent in English and German (C1+), enabling direct collaboration on German-language LLM use cases and client communication}
+
+\divider
+
+\cvachievement{\faLaptop}{Technical Support Expert}{Provided comprehensive Windows support for colleagues across multiple companies, resolving complex technical issues and improving productivity}
+
+\divider
+
+\cvachievement{\faDumbbell}{Bard-based Gibberish Classifier}{Bard-based Gibberish Classifier that helped streamline the training model for Bixby Voice Assistant}
+
+\divider
+
+\cvachievement{\faComments}{LLM-powered Chat Automation}{Built a chat application using a Chrome extension and NLTK-based Flask server that suggested context-aware answers for the CS team, improving response efficiency through prompt-driven NLP}
+
+\divider
+
+
+\cvsection{Most Proud of}
+
+\cvachievement{\faServer}{Building and Deploying media server}{Built using free parts using exclusively FOSS software}
+
+\divider
+
+\cvachievement{\faLinux}{Linux Expertise}{Over 15+ years of Linux experience (since age 12), implementing enterprise-level solutions and providing technical support across various distributions}
+
+\divider
+
+\cvachievement{\faLock}{Secured webapps}{All webapps are regularly being checked for new vulnerabilities and patched to the highest security standards}
+
+\divider
+
+\cvachievement{\faBook}{Ultralearning}{I regularly start short, intense learning projects that result in a deep level of understanding and skill }
+
+\cvsection{Referees}
+
+% \cvref{name}{email}{mailing address}
+\cvref{Pedro Sgarbi}{Samsung | Team Lead}{Tel:+48781665383}
+
+\divider
+
+\cvref{Adrian Bartosik}{Capgemini | Team Lead}{adrianbartosik@icloud.com}
+
+
+\textpdfrender{TextRenderingMode=Invisible}{  senior expert javascript node kotlin   }\\
+
+\end{paracol}
+
+
+\end{document}
