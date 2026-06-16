@@ -306,9 +306,15 @@
     rafId = requestAnimationFrame(loop);
   }
 
-  window.addEventListener('DOMContentLoaded', function () {
+  function bootstrap() {
     init();
     setupKeys();
     setTimeout(startGame, DELAY_MS);
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', bootstrap);
+  } else {
+    bootstrap();
+  }
 }());
