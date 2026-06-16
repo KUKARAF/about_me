@@ -63,7 +63,10 @@
     cols = Math.floor(w / CELL);
     rows = Math.floor(h / CELL);
     if (cols < 1 || rows < 1) {
-      if (alive) alive = false;
+      if (alive) {
+        console.warn('[tetris] viewport too small after resize (' + cols + 'x' + rows + ' cells) — ending game');
+        alive = false;
+      }
       return;
     }
     board = makeBoard();
@@ -77,6 +80,7 @@
         }
       }
       if (oob) {
+        console.warn('[tetris] active piece out of bounds after resize — respawning');
         piece = null;
         spawnPiece();
       }
@@ -116,6 +120,7 @@
     if (canPlace(p)) {
       piece = p;
     } else {
+      console.warn('[tetris] spawn blocked — board full, game over');
       alive = false;
     }
   }
@@ -291,7 +296,10 @@
   }
 
   function startGame() {
-    if (cols < 1 || rows < 1) return;
+    if (cols < 1 || rows < 1) {
+      console.warn('[tetris] viewport too small to start (' + cols + 'x' + rows + ' cells)');
+      return;
+    }
     board           = makeBoard();
     fallMs          = FALL_MS;
     lastFall        = performance.now();

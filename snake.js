@@ -32,7 +32,10 @@
     rows = Math.floor(h / CELL);
     if (alive && snake.length) {
       var head = snake[0];
-      if (head.x >= cols || head.y >= rows) alive = false;
+      if (head.x >= cols || head.y >= rows) {
+        console.warn('[snake] viewport shrink pushed snake out of bounds — ending game');
+        alive = false;
+      }
     }
   }
 
@@ -57,11 +60,17 @@
       };
       attempts++;
     } while (occupied.has(c.x + ',' + c.y) && attempts < 200);
+    if (occupied.has(c.x + ',' + c.y)) {
+      console.warn('[snake] placeFood exhausted 200 attempts — board nearly full');
+    }
     food = c;
   }
 
   function startGame() {
-    if (cols < 1 || rows < 1) return;
+    if (cols < 1 || rows < 1) {
+      console.warn('[snake] viewport too small to start (' + cols + 'x' + rows + ' cells)');
+      return;
+    }
     var startRow = Math.floor(Math.random() * rows);
     snake = [];
     for (var i = 0; i < SNAKE_LEN; i++) {
